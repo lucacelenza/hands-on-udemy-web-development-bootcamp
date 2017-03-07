@@ -1,0 +1,22 @@
+/* type selectors - least specific */
+body {
+    color: red;
+}
+
+ul {
+    color: blue;
+}
+
+li {
+    color: orange;
+}
+
+/* class selector, mid specific */
+.highlight {
+    color: yellow;
+}
+
+/* id selector, most specific */
+#special {
+    color: pink;
+}
