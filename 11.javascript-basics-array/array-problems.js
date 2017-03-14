@@ -5,21 +5,15 @@ function printReverse(array) {
 }
 
 function isUniform(array) {
-    var counter = 0;
-    var uniformity = true;
-    var matchingElement;
+    var firstElement = array[0];
 
-    while (counter < array.length && uniformity) {
-        if (!matchingElement) {
-            matchingElement = array[counter];
-        } else if (matchingElement !== array[counter]) {
-            uniformity = false;
+    for (var i = 0; i < array.length; i++) {
+        if (firstElement !== array[i]) {
+            return false;
         }
-
-        counter++;
     }
 
-    return uniformity;
+    return true;
 }
 
 function sumArray(arrayOfNumbers) {
