@@ -4,10 +4,13 @@ var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
 var feedback = document.getElementById("feedback");
 
-var pickedColorDisplay = document.querySelector("h1 span");
+var pickedColorDisplay = document.getElementById("picked-color");
 pickedColorDisplay.textContent = pickedColor;
 
 var title = document.querySelector("h1");
+
+var easyModeButton = document.getElementById("easy-mode");
+var hardModeButton = document.getElementById("hard-mode");
 
 var resetButton = document.getElementById("reset");
 
@@ -48,25 +51,19 @@ for (var i = 0; i < squares.length; i++) {
 }
 
 resetButton.addEventListener("click", function() {
-    //generate all new colors
-    colors = generateRandomColors(6);
+    setGame(colors.length);
+});
 
-    //pick a new random color from the array
-    pickedColor = pickColor();
+easyModeButton.addEventListener("click", function() {
+    this.classList.add("selected");
+    hardModeButton.classList.remove("selected");
+    setGame(3);
+});
 
-    //change pickedColorDisplay to match pickedColor
-    pickedColorDisplay.textContent = pickedColor;
-
-    //change colors of the squares on the page
-    for (var i = 0; i < squares.length; i++) {
-        squares[i].style.background = colors[i];
-    }
-
-    //reset button text to "New colors"
-    resetButton.textContent = "New colors";
-
-    //reset title background
-    title.style.background = "#232323";
+hardModeButton.addEventListener("click", function() {
+    this.classList.add("selected");
+    easyModeButton.classList.remove("selected");
+    setGame(6);
 });
 
 function changeColors(color) {
@@ -95,6 +92,35 @@ function generateRandomColors(colorsCount) {
 
     //return the array
     return colors;
+}
+
+function setGame(colorsCount) {
+    //generate all new colors
+    colors = generateRandomColors(colorsCount);
+
+    //pick a new random color from the array
+    pickedColor = pickColor();
+
+    //change pickedColorDisplay to match pickedColor
+    pickedColorDisplay.textContent = pickedColor;
+
+    //change colors of the squares on the page
+    for (var i = 0; i < squares.length; i++) {
+        if (colors[i]) {
+            squares[i].classList.remove("hidden");
+            squares[i].style.background = colors[i];
+        } else if (!squares[i].classList.contains("hidden")) {
+            squares[i].classList.add("hidden");
+        }
+    }
+
+    //reset button text to "New colors"
+    resetButton.textContent = "New colors";
+    //reset feedback
+    feedback.textContent = "";
+
+    //reset title background
+    title.style.background = "steelblue";
 }
 
 function randomColor() {

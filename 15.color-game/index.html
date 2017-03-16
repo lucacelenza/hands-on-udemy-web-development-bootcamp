@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,18 @@
 
     <title>Color Game</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="color-game.css">
 </head>
+
 <body>
-    <h1>The great <span></span> color game</h1>
+    <h1>The great <br><span id="picked-color"></span><br> guessing game</h1>
 
     <div id="stripe">
         <button id="reset">New colors</button>
         <span id="feedback"></span>
+        <button id="easy-mode">Easy</button>
+        <button id="hard-mode" class="selected">Hard</button>
     </div>
 
     <div id="container">
@@ -28,4 +33,5 @@
 
     <script src="color-game.js"></script>
 </body>
+
 </html>
