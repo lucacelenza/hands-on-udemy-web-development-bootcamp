@@ -1,0 +1,8 @@
+.hovered {
+    color: green;
+}
+
+.done {
+    text-decoration: line-through;
+    opacity: .5;
+}
