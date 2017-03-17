@@ -61,6 +61,7 @@ button {
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     cursor: pointer;
+    outline: none;
 }
 
 button:hover, .selected {
