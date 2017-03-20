@@ -1,0 +1,11 @@
+h1 {
+    text-transform: capitalize;
+}
+
+div {
+    width: 100px;
+    height: 100px;
+    background: teal;
+    float: left;
+    margin: 20px;
+}
