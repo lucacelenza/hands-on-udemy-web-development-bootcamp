@@ -12,10 +12,45 @@
     <script src="paper-full.min.js"></script>
 
     <script type="text/paperscript" canvas="my-canvas">
-        for (var y = 0; y < 1000; y += 100) {
-            for (var x = 0; x < 1000; x += 100) {
-                var circle = new Path.Circle(new Point(x, y), 10);
-                circle.fillColor = "purple";
+        var circles = [];
+
+        function randomColor() {
+            //pick a red from 0 to 255
+            var red = Math.floor(Math.random() * 256);
+
+            //pick a green from 0 to 255
+            var green = Math.floor(Math.random() * 256);
+
+            //pick a blue from 0 to 255
+            var blue = Math.floor(Math.random() * 256);
+
+            return "rgb(" + red + ", " + green + ", " + blue + ")";
+        }
+
+        function onKeyDown(event) {
+            //get the maximum point
+            var maxPoint = new Point(view.size.width, view.size.height);
+            
+            //get a random point with each coordinate between 0 and 1
+            var randomPoint = Point.random();
+
+            //multiplying the maxPoint per randomPoint times
+            //we get a point between 0, 0 and maxPoint.x, maxPoint.y
+            var point = maxPoint * randomPoint;
+
+            var circle = new Path.Circle(point, 500);
+            circle.fillColor = randomColor();
+
+            circles.push(circle);
+        }
+
+        function onFrame(event) {
+            for (var i = 0; i < circles.length; i++) {
+                //adds 1 to fillColor hue on each frame
+                circles[i].fillColor.hue += 3;
+
+                //scale the circle by .9 on each frame
+                circles[i].scale(.9);
             }
         }
     </script>
