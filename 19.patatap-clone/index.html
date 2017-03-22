@@ -5,43 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Patatap Clone</title>
 
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 
-    <script src="paper-full.min.js"></script>
+    <script src="assets/js/lib/howler.min.js"></script>
+    <script src="assets/js/data.js"></script>
 
+    <script src="assets/js/lib/paper-full.min.js"></script>
     <script type="text/paperscript" canvas="my-canvas">
         var circles = [];
 
-        function randomColor() {
-            //pick a red from 0 to 255
-            var red = Math.floor(Math.random() * 256);
-
-            //pick a green from 0 to 255
-            var green = Math.floor(Math.random() * 256);
-
-            //pick a blue from 0 to 255
-            var blue = Math.floor(Math.random() * 256);
-
-            return "rgb(" + red + ", " + green + ", " + blue + ")";
-        }
-
         function onKeyDown(event) {
-            //get the maximum point
-            var maxPoint = new Point(view.size.width, view.size.height);
-            
-            //get a random point with each coordinate between 0 and 1
-            var randomPoint = Point.random();
+            var data = keyData[event.key];
 
-            //multiplying the maxPoint per randomPoint times
-            //we get a point between 0, 0 and maxPoint.x, maxPoint.y
-            var point = maxPoint * randomPoint;
+            if (data) {
+                //play the corresponding key sound
+                data.sound.play();
 
-            var circle = new Path.Circle(point, 500);
-            circle.fillColor = randomColor();
+                //get the maximum point
+                var maxPoint = new Point(view.size.width, view.size.height);
 
-            circles.push(circle);
+                //get a random point with each coordinate between 0 and 1
+                var randomPoint = Point.random();
+
+                //multiplying the maxPoint per randomPoint times
+                //we get a point between 0, 0 and maxPoint.x, maxPoint.y
+                var point = maxPoint * randomPoint;
+
+                var circle = new Path.Circle(point, 500);
+                //fill the circle with the corresponding key color
+                circle.fillColor = data.color;
+
+                circles.push(circle);
+            }
         }
 
         function onFrame(event) {
@@ -51,8 +49,13 @@
 
                 //scale the circle by .9 on each frame
                 circles[i].scale(.9);
+
+                if (circles[i].area < 1) {
+                    circles[i].remove();
+                    circles.splice(i, 1);
+                }
             }
-        }
+        }    
     </script>
 </head>
 
