@@ -1,8 +1,11 @@
 var express = require("express");
 var app = express();
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+
 app.get("/", function(request, response) {
-    response.render("home.ejs");
+    response.render("home");
 });
 
 app.get("/fallinlovewith/:thing", function(request, response) {
@@ -10,7 +13,7 @@ app.get("/fallinlovewith/:thing", function(request, response) {
         thing: request.params.thing
     };
    
-    response.render("love.ejs", viewModel);
+    response.render("love", viewModel);
 });
 
 app.get("/posts", function(request, response) {
@@ -22,7 +25,7 @@ app.get("/posts", function(request, response) {
         ]
     };
    
-    response.render("posts.ejs", viewModel)
+    response.render("posts", viewModel)
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {

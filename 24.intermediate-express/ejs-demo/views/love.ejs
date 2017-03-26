@@ -1,3 +1,5 @@
+<% include partials/header %>
+
 <h1>You fell in love with: <%= thing.toUpperCase() %></h1>
 
 <% if (thing.toLowerCase() === "luca") { %>
@@ -7,3 +9,5 @@
 <% } %>
 
 <p>This is coming from love.ejs!</p>
+
+<% include partials/footer %>
