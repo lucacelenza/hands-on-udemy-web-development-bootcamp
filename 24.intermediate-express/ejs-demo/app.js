@@ -1,7 +1,10 @@
 var express = require("express");
 var app = express();
 
+//We tell express to use the folder public
 app.use(express.static("public"));
+
+//With this line of code we can avoid typing .ejs extension to the view
 app.set("view engine", "ejs");
 
 app.get("/", function(request, response) {
