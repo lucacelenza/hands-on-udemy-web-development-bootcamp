@@ -1,0 +1,33 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>RESTful Routes</h1>
+        <p>A table of all 7 RESTful routes</p>
+    </div>
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Path</th>
+                <th>HTTP Verb</th>
+                <th>Purpose</th>
+                <th>Mongoose Method</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% routes.forEach(function(route) { %>
+            <tr class="<%= route.contextClass %>">
+                <td><%= route.name %></td>
+                <td><%= route.path %></td>
+                <td><%= route.httpVerb %></td>
+                <td><%= route.purpose %></td>
+                <td><%= route.mongooseMethod %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
+
+<% include partials/footer %>

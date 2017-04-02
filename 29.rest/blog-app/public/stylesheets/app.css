@@ -1,0 +1,15 @@
+.fixed.inverted.menu .item {
+    text-transform: capitalize;
+}
+
+.fixed.inverted.menu .item i.icon {
+    font-size: 2em;
+}
+
+.main.container {
+    margin-top: 7em;
+}
+
+.inline-form {
+    display: inline;
+}

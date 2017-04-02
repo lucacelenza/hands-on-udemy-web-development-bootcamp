@@ -21,8 +21,7 @@ app.get("/", function(request, response) {
 });
 
 app.get("/campgrounds", function(request, response) {
-    Campground
-        .find({})
+    Campground.find({}).exec()
         .then(function(campgrounds) {
             var viewModel = {
                 campgrounds: campgrounds
@@ -40,9 +39,8 @@ app.get("/campgrounds/new", function(request, response) {
 
 //declare after "/campgrounds/new" to avoid route conflict
 app.get("/campgrounds/:id", function(request, response) {
-    Campground
-        .findById(request.params.id)
-        .then(function(campground) {
+    Campground.findById(request.params.id)
+        .exec().then(function(campground) {
             var viewModel = {
                 campground: campground
             };
